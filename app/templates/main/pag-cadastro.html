@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+{% block content -%}
+    <section id="formularioCadastro">
+        <div class="container my-5">
+            <form action="{{ url_for('.cadastro') }}" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNomeEmpresa">Nome da Empresa</label>
+                        <input type="text" class="form-control" name="inputNomeEmpresa" id="input1" placeholder="Empresa">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCNPJ">CNPJ</label>
+                        <input type="text" class="form-control" name="inputCNPJ" id="input2" placeholder="XX.XXX.XXX/YYYY-ZZ">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputProprietario">Proprietário</label>
+                        <input type="text" class="form-control" name="inputProprietario" id="input2" placeholder="Nome Completo">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control" name="inputEmail" id="input3" placeholder="Email">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEndereco">Endereço</label>
+                        <input type="text" class="form-control" name="inputEndereco" id="input4" placeholder="Rua dos Bobos, nº 0">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCidade">Cidade</label>
+                        <input type="text" class="form-control" name="inputCidade" id="input5">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputEstado">Estado</label>
+                        <select name="inputEstado" id="input6" class="form-control">
+                            <option >Escolher...</option>
+                            <option>Ceará</option>
+                            <option>Rio Grande do Norte</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputCEP">CEP</label>
+                        <input type="text" class="form-control" name="inputCEP" id="input7">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputSenha">Senha</label>
+                        <input type="password" class="form-control" name="inputSenha" id="input8" placeholder="Senha">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="form-group col-md-4 right">
+                        <label for="inputSenha">Confirmar Senha</label>
+                        <input type="password" class="form-control" name="inputConfirmSenha" id="input9" placeholder="Confirmar Senha">
+                    </div>
+                </div>
+                <hr>
+                <div class="row d-flex justify-content-center">
+                    <button type="submit" value="btnConfirmar" class="btn btn-primary col-md-6">Confirmar</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+{%- endblock content %} 
+
+
+

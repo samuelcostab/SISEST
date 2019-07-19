@@ -1,0 +1,232 @@
+{% extends "bootstrap/base.html" %}
+
+{%- block head %}
+
+    {%- block metas %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {%- endblock metas %}
+    
+    {%- block styles %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/node_modules/bootstrap/compiler/bootstrap.css">
+    <link rel="stylesheet" href="../static/node_modules/bootstrap/compiler/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    {%- endblock styles %}
+
+{%- endblock head %}
+
+{% block body %}
+{% block navbar %}
+<section id="barraNavegacao">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+            <div class="container">
+                <a class="navbar-brand h1 mb-0 col-md-1" href="{{ url_for('.index') }}">
+                    <img src="../static/imgs/logo-sistm.png" alt="logoSistema" class="" width=65%>
+                    SISEST
+                </a>
+                {% if user==False %}
+                <a href="{{ url_for('.cadastrar') }}" class="nav-link ml-3 text-warning">Cadastre-se</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSite">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="{{ url_for('.index') }}" class="nav-link text-light">Início</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-light">Contatos</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle text-light" data-toggle="dropdown" id="dropdownServicos">Serviços</a>
+                            <ul class="dropdown-menu bg-primary">
+                                <a href="{{ url_for('.controleEstacionamento') }}" class="dropdown-item text-light">Controle de Estacionamento</a>
+                                <a href="#" class="dropdown-item text-light">Serviços Financeiros</a>
+                                <a href="#" class="dropdown-item text-light">Relatórios</a>
+                            </ul>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="btn btn-success dropdown-toggle text-light ml-5" data-toggle="dropdown" id="dropdownLoginForm">Acessar/Login</a>
+                            <div class="dropdown-menu bg-primary text-light">
+                                <form action="{{ url_for('.login') }}" method="POST" class="px-4 py-3">
+                                    <div class="form-group">
+                                        <label for="dropdownFormEmail">Email</label>
+                                        <input type="email" class="form-control" name="inputEmail" id="dropdownFormEmail1" placeholder="email@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dropdownFormPassword">Senha</label>
+                                        <input type="password" class="form-control" name="inputSenha" id="dropdownFormPassword" placeholder="Senha">
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input ml-1" id="dropdownCheck">
+                                        <label class="form-check-label" for="dropdownCheck">Lembrar-me</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark">Entrar</button>
+                                </form>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-light" href="{{ url_for('.cadastrar') }}">Novo aqui? Cadastre-se!</a>
+                                <a class="dropdown-item text-light" href="#">Esqueceu a senha?</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                {% endif %}
+                {% if user == True %}
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <p class="text-light mr-2 mt-1">Olá {{ company.owner }}</p>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-light" data-toggle="dropdown" id="dropdownServicos">Serviços</a>
+                        <ul class="dropdown-menu bg-primary">
+                            <a href="{{ url_for('.controleEstacionamento') }}" class="dropdown-item text-light">Controle de Estacionamento</a>
+                            <a href="#" class="dropdown-item text-light">Serviços Financeiros</a>
+                            <a href="#" class="dropdown-item text-light">Relatórios</a>
+                        </ul>
+
+                    </li>
+                    <a href="{{ url_for('.index') }}" class="nav-link text-light">Logout</a>
+                </ul>
+                {% endif %}
+            </div>
+
+        </nav>
+
+    </section>
+{%- endblock navbar %}
+
+{% block content -%}
+<section id="carroussel">
+        <div class="carousel slide" id="carouselSite" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-targer="#carouselSite" data-slide-to="0" class="active"></li>
+                <li data-targer="#carouselSite" data-slide-to="1"></li>
+                <li data-targer="#carouselSite" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../static/imgs/est1.jpg" alt="img1" class="img-fluid d-block">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Gerencie seu estacionamento com um
+                            <br>
+                            <span class="text-warning">provedor de serviços completo.</span>
+                        </h3>
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../static/imgs/est2.jpg" alt="img2" class="img-fluid d-block">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Facilidade, Agilidade e Praticidade
+                            <br>
+                            <span class="text-danger">com este poderoso software.</span>
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="carousel-item">
+                    <img src="../static/imgs/est3.jpg" alt="img3" class="img-fluid d-block">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Venha Conferir os nossos
+                            <br>
+                            <span class="text-primary">Serviços.</span>
+                        </h3>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <a href="#carouselSite" class="carousel-control-prev" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+
+            <a href="#carouselSite" class="carousel-control-next" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="sr-only">Próximo</span>
+            </a>
+
+
+        </div>
+
+</section>
+
+<section id="cards">
+        <div class="container">
+            <div class="row my-5">
+                <h1 class="col-12 text-center mb-2 text-primary"><i class="fas fa-toolbox"></i> Serviços</h1>
+
+                <div class="col-sm-3 col-md-4">
+                    <div class="card bg-gradient-primary text-light">
+                        <div class="card-body">
+                            <h4 class="card-title text-light"><i class="fas fa-clipboard-list"></i> Ctrl. de Estacionamento</h4>
+                            <p>Registre a entrada e saída de veículos de forma extremamente ágil e móvel, tenha sempre a mãos dados estatísticos de ocupação e permanencia.</p>
+                            <a href="#" class="btn btn-success">Conhecer!</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-3 col-md-4">
+                    <div class="card bg-gradient-primary text-light">
+                        <div class="card-body">
+                            <h4 class="card-title text-light"><i class="fas fa-money-check-alt"></i> Serviços Financeiros</h4>
+                            <p>Controle completo de caixa por funcionário, movimentação, relatórios para auditoria, previsões de entradas, recebimentos atrasados e gráficos de faturamento.</p>
+                            <a href="#" class="btn btn-success">Conhecer!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 col-md-4">
+                    <div class="card bg-gradient-primary text-light">
+                        <div class="card-body">
+                            <h4 class="card-title text-light"><i class="fas fa-file-alt"></i> Relatórios</h4>
+                            <p>Receba os dados da operação no seu email através de relatórios.</p>
+                            <a href="#" class="btn btn-success">Conhecer!</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+</section>
+{%- endblock content %}
+<section id="footer">
+        <nav class="navbar navbar-dark bg-gradient-primary">
+            <a class="navbar-brand" href="#"><img src="../static/imgs/logo-sistm.png" alt="logoSistema" class="" width=15%>
+                SISEST</a>
+            <p class="text-light align-right">©Desenvolvido por: José Carlos e Samuel Brito, 2019</p>
+        </nav>
+
+    </section>
+
+{% block scripts %}
+ <!--     Scripts da pagina -->
+ <script src="../static/node_modules/jquery/dist/jquery.js"></script>
+ <script src="../static/node_modules/popper.js/dist/umd/popper.js"></script>
+ <script src="../static/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+{%- endblock scripts %}
+
+{% endblock %}
